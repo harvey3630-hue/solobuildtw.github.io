@@ -80,6 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => applyPlatform(btn.dataset.platform));
   });
 
+  // ---- GA4 begin_checkout tracking ----
+  document.querySelectorAll('[data-href-tw][data-href-intl]').forEach(el => {
+    el.addEventListener('click', () => {
+      const product = el.closest('[data-product]');
+      const productId = product ? product.dataset.product : 'unknown';
+      if (typeof gtag === 'function') {
+        gtag('event', 'begin_checkout', {
+          items: [{ item_id: productId, item_name: el.textContent.trim() }]
+        });
+      }
+    });
+  });
+
   // ---- Compare table toggle ----
   const compareToggle = document.querySelector('.compare-toggle');
   const compareTable = document.querySelector('.compare-table');

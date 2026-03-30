@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>感謝購買 — SoloBuild</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFM38NPEGE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MFM38NPEGE');
+
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('order_id') || params.get('checkout_id') || params.get('MerchantTradeNo') || ('order_' + Date.now());
+    const product = params.get('product');
+
+    const products = {
+      'teaching': { name: '教學包', price: 499, currency: 'TWD' },
+      'soul':    { name: '靈魂包', price: 649, currency: 'TWD' },
+      'combo':   { name: '組合包', price: 999, currency: 'TWD' },
+      'teaching_en': { name: 'Tutorial Pack', price: 16.99, currency: 'USD' },
+      'soul_en':    { name: 'Soul Pack', price: 21.99, currency: 'USD' },
+      'combo_en':   { name: 'Combo Pack', price: 32.99, currency: 'USD' }
+    };
+
+    const item = products[product] || { name: 'Unknown', price: 0, currency: 'TWD' };
+
+    if (product) {
+      gtag('event', 'purchase', {
+        transaction_id: orderId,
+        value: item.price,
+        currency: item.currency,
+        items: [{
+          item_id: product,
+          item_name: item.name,
+          price: item.price,
+          quantity: 1
+        }]
+      });
+    }
+  </script>
+  <style>
+    .thank-you-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1E3A5F 0%, #162d4a 100%);
+      color: #fff;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .thank-you-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 56px 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .thank-you-icon {
+      font-size: 4rem;
+      margin-bottom: 24px;
+    }
+    .thank-you-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .thank-you-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+    .thank-you-steps {
+      text-align: left;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .thank-you-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+    }
+    .step-num {
+      background: #E8804C;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .thank-you-contact {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .thank-you-contact p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+    }
+    .thank-you-contact a {
+      color: #E8804C;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .thank-you-contact a:hover {
+      text-decoration: underline;
+    }
+    .thank-you-sign {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+    @media (max-width: 700px) {
+      .thank-you-card {
+        padding: 40px 24px;
+        margin: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">SoloBuild</a>
+      <nav class="header-nav">
+        <button class="lang-toggle" data-lang="zh" aria-label="切換語言">中 / EN</button>
+        <a href="index.html" class="btn btn-primary btn-sm" data-zh="回首頁" data-en="Home">回首頁</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="開啟選單">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ========== THANK YOU ========== -->
+  <section class="thank-you-section">
+    <div class="container">
+      <div class="thank-you-card">
+        <div class="thank-you-icon">🎉</div>
+        <h1 class="thank-you-title" data-zh="感謝購買！" data-en="Thank You for Your Purchase!">感謝購買！</h1>
+        <p class="thank-you-subtitle" data-zh="你的經驗包正在路上。" data-en="Your experience pack is on its way.">你的經驗包正在路上。</p>
+
+        <ul class="thank-you-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span data-zh="請查收你的 Email，下載連結將寄送至你購買時填寫的信箱。" data-en="Check your email — the download link will be sent to the address you provided during checkout.">請查收你的 Email，下載連結將寄送至你購買時填寫的信箱。</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span data-zh="如果幾分鐘內沒收到，請檢查垃圾郵件資料夾。" data-en="If you don't receive it within a few minutes, please check your spam folder.">如果幾分鐘內沒收到，請檢查垃圾郵件資料夾。</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span data-zh="下載後，依照經驗包內的說明開始部署你的 AI 代理系統！" data-en="After downloading, follow the instructions in the pack to deploy your AI agent system!">下載後，依照經驗包內的說明開始部署你的 AI 代理系統！</span>
+          </li>
+        </ul>
+
+        <div class="thank-you-contact">
+          <p data-zh="有任何問題？歡迎聯繫：" data-en="Any questions? Feel free to contact:">有任何問題？歡迎聯繫：</p>
+          <a href="mailto:SoloBuildTW@gmail.com">SoloBuildTW@gmail.com</a>
+        </div>
+
+        <p class="thank-you-sign" data-zh="— 阿凱" data-en="— Kyle">— 阿凱</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 SoloBuild. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const langBtn = document.querySelector('.lang-toggle');
+      let currentLang = localStorage.getItem('solobuild-lang') || 'zh';
+
+      function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('solobuild-lang', lang);
+        document.querySelectorAll('[data-zh]').forEach(el => {
+          const val = el.getAttribute('data-' + lang);
+          if (val) el.textContent = val;
+        });
+        document.querySelectorAll('[data-zh-html]').forEach(el => {
+          const val = el.getAttribute('data-' + lang + '-html');
+          if (val) el.innerHTML = val;
+        });
+        if (langBtn) {
+          langBtn.textContent = lang === 'zh' ? '中 / EN' : 'EN / 中';
+          langBtn.classList.toggle('active-en', lang === 'en');
+        }
+      }
+
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          setLang(currentLang === 'zh' ? 'en' : 'zh');
+        });
+      }
+
+      if (currentLang === 'en') setLang('en');
+
+      // Mobile nav toggle
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      const headerNav = document.querySelector('.header-nav');
+      if (mobileToggle && headerNav) {
+        mobileToggle.addEventListener('click', () => {
+          const isOpen = headerNav.style.display === 'flex';
+          headerNav.style.display = isOpen ? '' : 'flex';
+          headerNav.style.flexDirection = 'column';
+          headerNav.style.position = 'absolute';
+          headerNav.style.top = '64px';
+          headerNav.style.left = '0';
+          headerNav.style.right = '0';
+          headerNav.style.background = 'rgba(250,247,242,0.98)';
+          headerNav.style.padding = '16px 24px 24px';
+          headerNav.style.gap = '16px';
+          headerNav.style.borderBottom = '1px solid rgba(30,58,95,0.1)';
+          if (isOpen) headerNav.removeAttribute('style');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

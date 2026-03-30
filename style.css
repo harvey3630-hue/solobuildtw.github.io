@@ -731,7 +731,7 @@ code {
   padding-bottom: 48px;
 }
 .footer-brand .brand-logo { color: #fff; font-size: 1.1rem; margin-bottom: 8px; display: block; }
-.footer-brand p { font-size: 0.85rem; max-width: 260px; }
+.footer-brand p { font-size: 0.85rem; max-width: 260px; white-space: nowrap; }
 
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { font-size: 0.9rem; }
