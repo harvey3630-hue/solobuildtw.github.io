@@ -81,6 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => applyPlatform(btn.dataset.platform));
   });
 
+  // Auto-select International when lang=en
+  if (currentLang === 'en') applyPlatform('intl');
+
   // ---- GA4 begin_checkout tracking ----
   document.querySelectorAll('[data-href-tw][data-href-intl]').forEach(el => {
     el.addEventListener('click', () => {
