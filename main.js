@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Language state (must be declared early) ----
   const langBtn = document.querySelector('.lang-toggle');
-  let currentLang = localStorage.getItem('solobuild-lang') || 'zh';
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  let currentLang = urlLang || localStorage.getItem('solobuild-lang') || 'zh';
 
   function setLang(lang) {
     currentLang = lang;
